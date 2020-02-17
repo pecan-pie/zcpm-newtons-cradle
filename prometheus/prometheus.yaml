@@ -1,0 +1,34 @@
+global:
+  scrape_interval:     5s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 5s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'zcpm-smoke-testing'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'central'
+    static_configs:
+      - targets: ['central:8000']
+
+  - job_name: 'receiver-alice'
+    static_configs:
+      - targets: ['receiver-alice:8000']
+
+  - job_name: 'receiver-bob'
+    static_configs:
+      - targets: ['receiver-bob:8000']
+
+  - job_name: 'receiver-charlie'
+    static_configs:
+      - targets: ['receiver-charlie:8000']
+
+  - job_name: 'receiver-dave'
+    static_configs:
+      - targets: ['receiver-dave:8000']

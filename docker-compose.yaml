@@ -1,0 +1,32 @@
+version: '3'
+services: 
+  central:
+    image: "zcpm-central:latest"
+    ports:
+    - "8000:8000"
+  receiver-alice:
+    image: "zcpm-receiver:latest"
+    ports:
+    - "8001:8000"
+  receiver-bob:
+    image: "zcpm-receiver:latest"
+    ports:
+    - "8002:8000"
+  receiver-charlie:
+    image: "zcpm-receiver:latest"
+    ports:
+    - "8003:8000"
+  receiver-dave:
+    image: "zcpm-receiver:latest"
+    ports:
+    - "8004:8000"
+  prometheus:
+    image: "prom/prometheus:v2.16.0"
+    ports: 
+    - "9090:9090"
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      # - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+    
